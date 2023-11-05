@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 const apiUrl = import.meta.env.VITE_API_URL;
 
-
 function getStatusColor(status) {
   switch (status.toLowerCase()) {
     case "alive":
@@ -19,7 +18,7 @@ function Homepage() {
 
   useEffect(() => {
     async function fetchCharacters() {
-    const response = await axios.get(apiUrl);
+      const response = await axios.get(apiUrl);
       setCharacters(response.data.results);
     }
     fetchCharacters();
@@ -39,14 +38,18 @@ function Homepage() {
                 alt={character.name}
                 className="rounded mb-4 mx-auto"
               />
-              <h2 className="text-2xl font-bold mb-2 text-gray-800">{character.name}</h2>
+              <h2 className="text-2xl font-bold mb-2 text-gray-800">
+                {character.name}
+              </h2>
               <p className="text-gray-600 mb-1 text-sm">{character.species}</p>
               <p className="text-gray-600 mb-1 text-sm">{character.gender}</p>
               <p className={`${getStatusColor(character.status)} mb-1`}>
                 {character.status}
               </p>
               <p className="text-lg text-gray-600 ">Last known location:</p>
-              <p className="text-gray-800 text-sm font-medium">{character.origin.name}</p>
+              <p className="text-gray-800 text-sm font-medium">
+                {character.origin.name}
+              </p>
             </div>
           ))}
         </div>
